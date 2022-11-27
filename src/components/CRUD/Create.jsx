@@ -1,0 +1,86 @@
+import React, { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+/************************* */
+const Create = ({ setOpenForm, getUsers }) => {
+  /***************Declaramos estados********************* */
+  const [name, setName] = useState("Nombre");
+  const [businessName, setBusinessName] = useState("Razon Social");
+  const [nit, setNit] = useState("123456");
+  const [telf, setTelf] = useState("+58-416-1234567");
+  const [code, setCode] = useState("Codigo");
+  /**************accedemos a la coleccion de datos************* */
+  const usersCollection = collection(db, "users");
+  /**************componente para cerrar el pop-up*************** */
+  const handleCloseForm = () => {
+    setOpenForm(false);
+  };
+
+  /******************enviar datos de registro******************** */
+  const store = async (e) => {
+    e.preventDefault();
+    await addDoc(usersCollection, {
+      name: name,
+      businessName: businessName,
+      nit: nit,
+      telf: telf,
+      code: code,
+    });
+    handleCloseForm();
+    getUsers();
+  };
+  /************************************* */
+  return (
+    <form onSubmit={store} className="form">
+      <div onClick={handleCloseForm} className="form__x">
+        X
+      </div>
+      <h2 className="form__title">Crear nuevo usuario</h2>
+      <ul className="form__list">
+        <li className="form__item">
+          <label htmlFor="name">Nombre</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+          />
+        </li>
+        <li className="form__item">
+          <label htmlFor="businessName">Razon social</label>
+          <input
+            value={businessName}
+            onChange={(e) => setBusinessName(e.target.value)}
+            type="text"
+          />
+        </li>
+        <li className="form__item">
+          <label htmlFor="nit">Nit</label>
+          <input
+            value={nit}
+            onChange={(e) => setNit(e.target.value)}
+            type="number"
+          />
+        </li>
+        <li className="form__item">
+          <label htmlFor="telf">Telefono</label>
+          <input
+            value={telf}
+            onChange={(e) => setTelf(e.target.value)}
+            type="tel"
+          />
+        </li>
+        <li className="form__item">
+          <label htmlFor="code">Codigo</label>
+          <input
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            type="text"
+          />
+        </li>
+      </ul>
+      <button className="form__btn">Crear usuario</button>
+    </form>
+  );
+};
+
+export default Create;
