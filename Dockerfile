@@ -1,17 +1,14 @@
-FROM node:alpine
+FROM node
+
+RUN mkdir-p /app
 
 WORKDIR /app
 
-COPY package.json .
-
-COPY package-lock.json .
+COPY . .
 
 RUN npm install
 
-COPY . .
 
-RUN npm run build
-
-EXPOSE 3000
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
