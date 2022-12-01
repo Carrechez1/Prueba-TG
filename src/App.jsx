@@ -147,6 +147,9 @@ function App() {
         </footer>
       </div>
     );
+    /********************************************* */
+    /********************************************* */
+    /*******************Si se usan ambos buscadores************************* */
   } else if (search && search2) {
     return (
       <div className="App">
