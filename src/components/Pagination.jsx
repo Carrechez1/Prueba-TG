@@ -48,7 +48,7 @@ const Pagination = ({ page, pagesLength, setPage }) => {
       </ul>
       {page < pagesLength && (
         <div onClick={handleNext} className="pagination__next">
-          <i class="bx bxs-chevron-right-circle right"></i>
+          <i className="bx bxs-chevron-right-circle right"></i>
         </div>
       )}
     </div>

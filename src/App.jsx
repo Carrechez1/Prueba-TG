@@ -7,6 +7,7 @@ import { db } from "./firebase/firebase";
 import ShowSearch from "./components/serchers/ShowSearch";
 import SearchNit from "./components/serchers/SearchNit";
 import Pagination from "./components/Pagination";
+import SearchNitName from "./components/serchers/SearchNitName";
 // import SearchTelf from "./components/serchers/SearchTelf";
 
 /*Desarrollar usando reactjs un componente de tipo dropdown (o combobox)
@@ -47,8 +48,12 @@ function App() {
   let results2 = users.filter((dato2) =>
     dato2.nit.toLowerCase().includes(search2.toLocaleLowerCase())
   );
-  if (search === results) {
-  } else if (search2 === results2) {
+  /******************crear nuevo arreglo para la busqueda combinada*********************** */
+  let resultss = [];
+  if (search) {
+    resultss = users.filter((dato) =>
+      dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+    );
   }
   /*********************mostrar datos que llegan************************ */
   useEffect(() => {
@@ -99,6 +104,7 @@ function App() {
             search={search}
             setSearch={setSearch}
             setPage={setPage}
+            getUsers={getUsers}
           />
         </header>
         <div>
@@ -116,7 +122,7 @@ function App() {
     /********************************************* */
     /********************************************* */
     /*******************Si se usa el buscador por nit************************* */
-  } else if (search2) {
+  } else if (search2 && !search) {
     return (
       <div className="App">
         <header className="header">
@@ -126,10 +132,41 @@ function App() {
             setSearch2={setSearch2}
             search2={search2}
             setPage={setPage}
+            getUsers={getUsers}
           />
         </header>
         <div>
           <SearchNit results2={results2} initialP={initialP} finalP={finalP} />
+        </div>
+        <footer className="footer">
+          <Pagination
+            page={page}
+            pagesLength={results2 && Math.ceil(results2.length / perPage)}
+            setPage={setPage}
+          />
+        </footer>
+      </div>
+    );
+  } else if (search && search2) {
+    return (
+      <div className="App">
+        <header className="header">
+          <DropDown
+            search={search}
+            setSearch={setSearch}
+            setSearch2={setSearch2}
+            search2={search2}
+            setPage={setPage}
+            getUsers={getUsers}
+          />
+        </header>
+        <div>
+          <SearchNitName
+            resultss={resultss}
+            search2={search2}
+            initialP={initialP}
+            finalP={finalP}
+          />
         </div>
         <footer className="footer">
           <Pagination
