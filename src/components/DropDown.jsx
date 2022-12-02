@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import Create from "./CRUD/Create";
-import SearchComponent from "./SearchComponent";
-import SearchComponentNit from "./SearchComponentNit";
+import SearchComponent from "./search/SearchComponent";
+import SearchComponentNit from "./search/SearchComponentNit";
 import "../css/dropDown.css";
+import SearchComponentNitSr from "./search/SearchComponentNitSr";
+import SearchComponentTelf from "./search/SearchComponentTelf";
 
 const DropDown = ({
   search,
   setSearch,
   search2,
   setSearch2,
+  search3,
+  setSearch3,
+  search4,
+  setSearch4,
   setPage,
   getUsers,
 }) => {
@@ -54,6 +60,20 @@ const DropDown = ({
             <SearchComponentNit
               search2={search2}
               setSearch2={setSearch2}
+              setPage={setPage}
+            />
+          </div>
+          <div>
+            <SearchComponentNitSr
+              search3={search3}
+              setSearch3={setSearch3}
+              setPage={setPage}
+            />
+          </div>
+          <div>
+            <SearchComponentTelf
+              search4={search4}
+              setSearch4={setSearch4}
               setPage={setPage}
             />
           </div>
