@@ -1,44 +1,58 @@
 import React from "react";
 import Pagination from "../Pagination";
 const SearchNit = ({ results2, initialP, finalP, page, setPage, perPage }) => {
+  /*****************cuando el arreglo este vacio sera falso******************** */
+  if (results2?.length == 0) {
+    results2 = false;
+  }
   /*****Se muestran los elementos filtrados por nit y se aplica logica de paginacion****/
   return (
     <div>
-      <article className="card__container2">
-        {results2.slice(initialP, finalP).map((user) => (
-          <div className="card" key={user.id}>
-            <header className="card__header">
-              <h2 className="card__title">{user.name}</h2>
-            </header>
-            <ul className="card__list">
-              <div className="card__info">
-                <li className="card__item ">
-                  <strong>Razon social: </strong>
-                  {user.businessName}
-                </li>
-                <li className="card__item ">
-                  <strong>Nit: </strong>
-                  {user.nit}
-                </li>
-                <li className="card__item ">
-                  <strong>Telefono: </strong>
-                  {user.telf}
-                </li>
-                <li className="card__item ">
-                  <strong>Codigo:</strong> {user.code}
-                </li>
+      {results2 ? (
+        <div>
+          <article className="card__container2">
+            {results2.slice(initialP, finalP).map((user) => (
+              <div className="card" key={user.id}>
+                <header className="card__header">
+                  <h2 className="card__title">{user.name}</h2>
+                </header>
+                <ul className="card__list">
+                  <div className="card__info">
+                    <li className="card__item ">
+                      <strong>Razon social: </strong>
+                      {user.businessName}
+                    </li>
+                    <li className="card__item ">
+                      <strong>Nit: </strong>
+                      {user.nit}
+                    </li>
+                    <li className="card__item ">
+                      <strong>Telefono: </strong>
+                      {user.telf}
+                    </li>
+                    <li className="card__item ">
+                      <strong>Codigo:</strong> {user.code}
+                    </li>
+                  </div>
+                </ul>
               </div>
-            </ul>
-          </div>
-        ))}
-      </article>
-      <footer className="footer">
-        <Pagination
-          page={page}
-          pagesLength={results2 && Math.ceil(results2.length / perPage)}
-          setPage={setPage}
-        />
-      </footer>
+            ))}
+          </article>
+          <footer className="footer">
+            <Pagination
+              page={page}
+              pagesLength={results2 && Math.ceil(results2.length / perPage)}
+              setPage={setPage}
+            />
+          </footer>
+        </div>
+      ) : (
+        <div className="notFound">
+          <p className="message">USUARIO NO ENCONTRADO</p>
+          <img className="img" src="/no-encontrado.png" alt="" />
+          <footer className="footer2"></footer>
+        </div>
+      )}
     </div>
   );
 };

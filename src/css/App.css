@@ -122,3 +122,28 @@ h3 {
   height: 70px;
   width: 100%;
 }
+.notFound {
+  display: flex;
+  padding-top: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.img {
+  width: 30%;
+}
+.message {
+  font-size: 30px;
+  font-weight: bold;
+}
+.footer2 {
+  display: flex;
+  align-items: center;
+  background-color: rgb(42, 43, 50);
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  position: absolute;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+}

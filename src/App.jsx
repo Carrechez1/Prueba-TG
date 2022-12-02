@@ -614,7 +614,6 @@ function App() {
             perPage={perPage}
           />
         </div>
-      
       </div>
     );
   }
