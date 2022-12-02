@@ -49,33 +49,35 @@ const DropDown = ({
           <div className={openForm ? `form__container` : `form__none`}>
             <Create getUsers={getUsers} setOpenForm={setOpenForm} />
           </div>
-          <div>
-            <SearchComponent
-              search={search}
-              setSearch={setSearch}
-              setPage={setPage}
-            />
-          </div>
-          <div>
-            <SearchComponentNit
-              search2={search2}
-              setSearch2={setSearch2}
-              setPage={setPage}
-            />
-          </div>
-          <div>
-            <SearchComponentNitSr
-              search3={search3}
-              setSearch3={setSearch3}
-              setPage={setPage}
-            />
-          </div>
-          <div>
-            <SearchComponentTelf
-              search4={search4}
-              setSearch4={setSearch4}
-              setPage={setPage}
-            />
+          <div className="searchs">
+            <div>
+              <SearchComponent
+                search={search}
+                setSearch={setSearch}
+                setPage={setPage}
+              />
+            </div>
+            <div>
+              <SearchComponentNit
+                search2={search2}
+                setSearch2={setSearch2}
+                setPage={setPage}
+              />
+            </div>
+            <div>
+              <SearchComponentNitSr
+                search3={search3}
+                setSearch3={setSearch3}
+                setPage={setPage}
+              />
+            </div>
+            <div>
+              <SearchComponentTelf
+                search4={search4}
+                setSearch4={setSearch4}
+                setPage={setPage}
+              />
+            </div>
           </div>
         </div>
       ) : (

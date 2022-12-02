@@ -1,15 +1,25 @@
+.searchs {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  height: max-content;
+}
 input {
+  /* display: flex; */
   padding-top: 5px;
   outline: none;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 15px;
+  width: max-content;
 }
 label {
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 }
 .dropDown__container {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin-left: 10px;
 
   align-items: center;
@@ -34,7 +44,7 @@ label {
 }
 .dropDown__menu {
   display: flex;
-  gap: 70px;
+  gap: 55px;
   align-items: center;
 }
 .form__none {
@@ -125,10 +135,11 @@ label {
   font-weight: bold;
   border: 1px solid rgb(186, 183, 183);
   background-color: rgb(210, 210, 33);
-
+  width: max-content;
   border-radius: 15px;
   height: 35px;
-  padding-left: 5px;
+  padding-left: 10px;
+  padding-right: 5px;
   cursor: pointer;
   transition: transform 200ms ease;
 }
