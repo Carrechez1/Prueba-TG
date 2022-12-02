@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  padding-bottom: 3em;
+
   min-height: 100vh;
   /* background-color: rgb(148, 165, 173);
   background-color: rgb(216, 213, 175);
@@ -43,6 +43,7 @@ h3 {
   /* grid-template-rows: 1fr 1fr 1fr 1fr; */
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 6em;
 }
 .card__container2 {
   display: grid;
@@ -52,7 +53,7 @@ h3 {
   /* grid-template-rows: 1fr 1fr 1fr 1fr; */
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 3em;
+  padding-bottom: 6em;
 }
 .card {
   display: flex;

@@ -6,7 +6,6 @@ import { collection, getDocs, getDoc } from "firebase/firestore";
 import { db } from "./firebase/firebase";
 import ShowSearch from "./components/serchers/ShowSearch";
 import SearchNit from "./components/serchers/SearchNit";
-import Pagination from "./components/Pagination";
 import SearchNitName from "./components/serchers/SearchNitName";
 import SearchNitSr from "./components/serchers/SearchNitSr";
 import SearchNameSr from "./components/serchers/SearchNameSr";
@@ -19,6 +18,7 @@ import SearchTelfName from "./components/serchers/SearchTelfName";
 import SearchNitRsTelf from "./components/serchers/SearchNitRsTelf";
 import SearchNameNitTelf from "./components/serchers/SearchNameNitTelf";
 import SearchNameSrTelf from "./components/serchers/SearchNameSrTelf";
+import SerchersAll from "./components/serchers/SerchersAll";
 // import SearchTelf from "./components/serchers/SearchTelf";
 
 /*Desarrollar usando reactjs un componente de tipo dropdown (o combobox)
@@ -101,6 +101,7 @@ function App() {
             search3={search3}
             setSearch3={setSearch3}
             search4={search4}
+            setPage={setPage}
             setSearch4={setSearch4}
             getUsers={getUsers}
           />
@@ -111,15 +112,11 @@ function App() {
             users={users}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </body>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={users && Math.ceil(users.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -143,15 +140,15 @@ function App() {
           />
         </header>
         <div>
-          <ShowSearch results={results} initialP={initialP} finalP={finalP} />
-        </div>
-        <footer className="footer">
-          <Pagination
+          <ShowSearch
+            results={results}
+            initialP={initialP}
+            finalP={finalP}
             page={page}
-            pagesLength={results && Math.ceil(results.length / perPage)}
             setPage={setPage}
+            perPage={perPage}
           />
-        </footer>
+        </div>
       </div>
     );
     /********************************************* */
@@ -175,15 +172,15 @@ function App() {
           />
         </header>
         <div>
-          <SearchNit results2={results2} initialP={initialP} finalP={finalP} />
-        </div>
-        <footer className="footer">
-          <Pagination
+          <SearchNit
+            results2={results2}
+            initialP={initialP}
+            finalP={finalP}
             page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
             setPage={setPage}
+            perPage={perPage}
           />
-        </footer>
+        </div>
       </div>
     );
     /********************************************* */
@@ -207,15 +204,15 @@ function App() {
           />
         </header>
         <div>
-          <SearchSr results3={results3} initialP={initialP} finalP={finalP} />
-        </div>
-        <footer className="footer">
-          <Pagination
+          <SearchSr
+            results3={results3}
+            initialP={initialP}
+            finalP={finalP}
             page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
             setPage={setPage}
+            perPage={perPage}
           />
-        </footer>
+        </div>
       </div>
     );
     /********************************************* */
@@ -239,15 +236,15 @@ function App() {
           />
         </header>
         <div>
-          <SearchTelf results4={results4} initialP={initialP} finalP={finalP} />
-        </div>
-        <footer className="footer">
-          <Pagination
+          <SearchTelf
+            results4={results4}
+            initialP={initialP}
+            finalP={finalP}
             page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
             setPage={setPage}
+            perPage={perPage}
           />
-        </footer>
+        </div>
       </div>
     );
     /********************************************* */
@@ -276,15 +273,11 @@ function App() {
             search2={search2}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -313,15 +306,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -350,15 +339,11 @@ function App() {
             search3={search3}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -387,15 +372,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -424,15 +405,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -461,15 +438,11 @@ function App() {
             search3={search3}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -499,15 +472,11 @@ function App() {
             search3={search3}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -537,15 +506,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -575,15 +540,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -613,15 +574,11 @@ function App() {
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
       </div>
     );
     /********************************************* */
@@ -645,22 +602,19 @@ function App() {
           />
         </header>
         <div>
-          <SearchNameSrTelf
+          <SerchersAll
             resultss={resultss}
             search2={search2}
             search3={search3}
             search4={search4}
             initialP={initialP}
             finalP={finalP}
+            page={page}
+            setPage={setPage}
+            perPage={perPage}
           />
         </div>
-        <footer className="footer">
-          <Pagination
-            page={page}
-            pagesLength={results2 && Math.ceil(results2.length / perPage)}
-            setPage={setPage}
-          />
-        </footer>
+      
       </div>
     );
   }
