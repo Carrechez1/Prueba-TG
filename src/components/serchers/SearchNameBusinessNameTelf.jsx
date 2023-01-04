@@ -1,31 +1,37 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchNameSr = ({
+const SearchNameBusinessNameTelf = ({
   initialP,
   finalP,
-  resultss,
+  newSearcherName,
+  search4,
   search3,
   page,
   setPage,
   perPage,
 }) => {
-  /*******logica para buscar 2 elementos******* */
-  let results5 = resultss?.filter((dato5) =>
-    dato5.businessName
-      .toString()
-      .toLowerCase()
-      .includes(search3.toLocaleLowerCase())
+  let searchNameBusinessName = [];
+  if (newSearcherName) {
+    searchNameBusinessName = newSearcherName?.filter((dato) =>
+      dato.businessName
+        .toString()
+        .toLowerCase()
+        .includes(search3.toLocaleLowerCase())
+    );
+  }
+  let searchNameBusinessNameTelf = searchNameBusinessName?.filter((dato) =>
+    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results5?.length == 0) {
-    results5 = false;
+
+  if (searchNameBusinessNameTelf?.length == 0) {
+    searchNameBusinessNameTelf = false;
   }
   return (
     <div>
-      {results5 ? (
+      {searchNameBusinessNameTelf ? (
         <div>
           <article className="card__container2">
-            {results5.slice(initialP, finalP).map((user) => (
+            {searchNameBusinessNameTelf.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -55,7 +61,10 @@ const SearchNameSr = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results5 && Math.ceil(results5.length / perPage)}
+              pagesLength={
+                searchNameBusinessNameTelf &&
+                Math.ceil(searchNameBusinessNameTelf.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
@@ -71,4 +80,4 @@ const SearchNameSr = ({
   );
 };
 
-export default SearchNameSr;
+export default SearchNameBusinessNameTelf;

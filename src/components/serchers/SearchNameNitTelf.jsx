@@ -3,33 +3,32 @@ import Pagination from "../Pagination";
 const SearchNameNitTelf = ({
   initialP,
   finalP,
-  resultss,
+  newSearcherName,
   search2,
   search4,
   page,
   setPage,
   perPage,
 }) => {
-  /*****logica para buscar por 3 elementos***** */
-  let arr2 = [];
-  if (resultss) {
-    arr2 = resultss?.filter((dato6) =>
-      dato6.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+  let searchNameNit = [];
+  if (newSearcherName) {
+    searchNameNit = newSearcherName?.filter((dato) =>
+      dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
     );
   }
-  let results6 = arr2?.filter((dato6) =>
-    dato6.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+  let searchNameNitTelf = searchNameNit?.filter((dato) =>
+    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results6?.length == 0) {
-    results6 = false;
+
+  if (searchNameNitTelf?.length == 0) {
+    searchNameNitTelf = false;
   }
   return (
     <div>
-      {results6 ? (
+      {searchNameNitTelf ? (
         <div>
           <article className="card__container2">
-            {results6.slice(initialP, finalP).map((user) => (
+            {searchNameNitTelf.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -59,7 +58,10 @@ const SearchNameNitTelf = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results6 && Math.ceil(results6.length / perPage)}
+              pagesLength={
+                searchNameNitTelf &&
+                Math.ceil(searchNameNitTelf.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>

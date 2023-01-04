@@ -1,17 +1,23 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchNit = ({ results2, initialP, finalP, page, setPage, perPage }) => {
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results2?.length == 0) {
-    results2 = false;
+const SearchNit = ({
+  searcherNit,
+  initialP,
+  finalP,
+  page,
+  setPage,
+  perPage,
+}) => {
+  if (searcherNit?.length == 0) {
+    searcherNit = false;
   }
-  /*****Se muestran los elementos filtrados por nit y se aplica logica de paginacion****/
+
   return (
     <div>
-      {results2 ? (
+      {searcherNit ? (
         <div>
           <article className="card__container2">
-            {results2.slice(initialP, finalP).map((user) => (
+            {searcherNit.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -41,7 +47,9 @@ const SearchNit = ({ results2, initialP, finalP, page, setPage, perPage }) => {
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results2 && Math.ceil(results2.length / perPage)}
+              pagesLength={
+                searcherNit && Math.ceil(searcherNit.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>

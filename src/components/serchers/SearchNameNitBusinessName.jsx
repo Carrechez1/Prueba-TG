@@ -1,32 +1,37 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchNitSr = ({
+const SearchNameNitBusinessName = ({
   initialP,
   finalP,
-  resultss2,
+  newSearcherName,
   search3,
+  search2,
   page,
-  setPage,
   perPage,
+  setPage,
 }) => {
-  /*******logica para buscar por 2 elementos******* */
-  let results4 = resultss2?.filter((dato4) =>
-    dato4.businessName
+  let searchNitName = [];
+  if (newSearcherName) {
+    searchNitName = newSearcherName?.filter((dato) =>
+      dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+    );
+  }
+  let searchNitNameBusinessName = searchNitName?.filter((dato) =>
+    dato.businessName
       .toString()
       .toLowerCase()
       .includes(search3.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results4?.length == 0) {
-    results4 = false;
-  }
 
+  if (searchNitNameBusinessName?.length == 0) {
+    searchNitNameBusinessName = false;
+  }
   return (
     <div>
-      {results4 ? (
+      {searchNitNameBusinessName ? (
         <div>
           <article className="card__container2">
-            {results4.slice(initialP, finalP).map((user) => (
+            {searchNitNameBusinessName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -56,7 +61,10 @@ const SearchNitSr = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results4 && Math.ceil(results4.length / perPage)}
+              pagesLength={
+                searchNitNameBusinessName &&
+                Math.ceil(searchNitNameBusinessName.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
@@ -72,4 +80,4 @@ const SearchNitSr = ({
   );
 };
 
-export default SearchNitSr;
+export default SearchNameNitBusinessName;

@@ -7,7 +7,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 
 function App() {
-  /********************Declaramos estados************************** */
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [search2, setSearch2] = useState("");
@@ -16,20 +15,16 @@ function App() {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(20);
 
-  /*******************coleccion de datos que se trae de firebase*************************** */
   const usersCollection = collection(db, "users");
   const getUsers = async () => {
     const data = await getDocs(usersCollection);
     setUsers(data?.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  /*********************mostrar datos que llegan************************ */
   useEffect(() => {
     getUsers();
   }, []);
-  /********************************************* */
-  /********************************************* */
-  /******************************************** */
+
   return (
     <div className="app">
       <header className="header">

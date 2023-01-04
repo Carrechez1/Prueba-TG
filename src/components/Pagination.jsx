@@ -1,12 +1,11 @@
 import React from "react";
 import "../css/pagination.css";
 const Pagination = ({ page, pagesLength, setPage }) => {
-  /********************declaracion de elementos por bloque**************************** */
   const pagesPerBlock = 5;
-  /***********************bloque actual y longitud************************************* */
+
   const currentBlock = Math.ceil(page / pagesPerBlock);
   const blockLength = Math.ceil(pagesLength / pagesPerBlock);
-  /*****pagina de inicio, limite de paginas por bloque y push en el arreglo de paginas***** */
+
   const arrPages = [];
   const initialPage = (currentBlock - 1) * pagesPerBlock + 1;
   const limitPage =
@@ -14,7 +13,7 @@ const Pagination = ({ page, pagesLength, setPage }) => {
   for (let i = initialPage; i <= limitPage; i++) {
     arrPages.push(i);
   }
-  /*************logica para avanzar, retroceder y seleccionar paginas***************** */
+
   const handlePrev = () => {
     setPage(page - 1);
   };
@@ -24,9 +23,7 @@ const Pagination = ({ page, pagesLength, setPage }) => {
   const handlePage = (currentPage) => {
     setPage(currentPage);
   };
-  /************************************** */
-  /**************************************** */
-  /*************************************** */
+
   return (
     <div className="pagination">
       {page > 1 && (

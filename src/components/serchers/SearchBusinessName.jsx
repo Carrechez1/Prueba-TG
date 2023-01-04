@@ -1,17 +1,23 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchSr = ({ initialP, finalP, results3, page, perPage, setPage }) => {
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results3?.length == 0) {
-    results3 = false;
+const SearchSr = ({
+  initialP,
+  finalP,
+  searcherBusinessName,
+  page,
+  perPage,
+  setPage,
+}) => {
+  if (searcherBusinessName?.length == 0) {
+    searcherBusinessName = false;
   }
-  /*************se muestran los elementos filtrados*************** */
+
   return (
     <div>
-      {results3 ? (
+      {searcherBusinessName ? (
         <div>
           <article className="card__container2">
-            {results3.slice(initialP, finalP).map((user) => (
+            {searcherBusinessName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -41,7 +47,10 @@ const SearchSr = ({ initialP, finalP, results3, page, perPage, setPage }) => {
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results3 && Math.ceil(results3.length / perPage)}
+              pagesLength={
+                searcherBusinessName &&
+                Math.ceil(searcherBusinessName.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>

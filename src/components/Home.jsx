@@ -1,20 +1,23 @@
 import React from "react";
-import ShowSearch from "./serchers/ShowSearch";
 import SearchNit from "./serchers/SearchNit";
 import SearchNitName from "./serchers/SearchNitName";
-import SearchNitSr from "./serchers/SearchNitSr";
-import SearchNameSr from "./serchers/SearchNameSr";
-import SearchNameNitSr from "./serchers/SearchNameNitSr";
-import SearchSr from "./serchers/Searchsr";
+import SearchNameNitSr from "./serchers/SearchNameNitBusinessName";
+import SearchBusinessName from "./serchers/SearchBusinessName";
 import SearchTelf from "./serchers/SearchTelf";
-import SearchTelfSr from "./serchers/SearchTelfSr";
 import SearchTelfNit from "./serchers/SearchTelfNit";
 import SearchTelfName from "./serchers/SearchTelfName";
-import SearchNitRsTelf from "./serchers/SearchNitRsTelf";
+import SearchNitRsTelf from "./serchers/SearchNameBusinessNameTelf";
 import SearchNameNitTelf from "./serchers/SearchNameNitTelf";
-import SearchNameSrTelf from "./serchers/SearchNameSrTelf";
+import SearchNameSrTelf from "./serchers/SearchNitBusinessNameTelf";
 import SerchersAll from "./serchers/SerchersAll";
 import Show from "./CRUD/Show";
+import SearchName from "./serchers/SearchName";
+import SearchTelfBusinessName from "./serchers/SearchTelfBusinessName";
+import SearchNitBusinessName from "./serchers/SearchNitBusinessName";
+import SearchNameBusinessName from "./serchers/SearchNameBusinessName";
+import SearchNameNitBusinessName from "./serchers/SearchNameNitBusinessName";
+import SearchNitBusinessNameTelf from "./serchers/SearchNitBusinessNameTelf";
+import SearchNameBusinessNameTelf from "./serchers/SearchNameBusinessNameTelf";
 
 const Home = ({
   users,
@@ -27,35 +30,34 @@ const Home = ({
   setPage,
   perPage,
 }) => {
-  /******************Logica de paginacion**************************** */
   const initialP = (page - 1) * perPage;
   const finalP = page * perPage;
-  /*********************Buscadores por tipo de dato**************************/
-  let results = users.filter((dato) =>
+
+  let searcherName = users.filter((dato) =>
     dato.name.toLowerCase().includes(search.toLocaleLowerCase())
   );
-  let results2 = users.filter((dato2) =>
-    dato2.nit.toLowerCase().includes(search2.toLocaleLowerCase())
+  let searcherNit = users.filter((dato) =>
+    dato.nit.toLowerCase().includes(search2.toLocaleLowerCase())
   );
-  let results3 = users.filter((dato3) =>
-    dato3.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
+  let searcherBusinessName = users.filter((dato) =>
+    dato.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
   );
-  let results4 = users.filter((dato4) =>
-    dato4.telf.toLowerCase().includes(search4.toLocaleLowerCase())
+  let searcherTelf = users.filter((dato) =>
+    dato.telf.toLowerCase().includes(search4.toLocaleLowerCase())
   );
-  /******************crear nuevo arreglo para la busqueda combinada*********************** */
-  let resultss = [];
-  let resultss2 = [];
-  let resultss3 = [];
+
+  let newSearcherName = [];
+  let newSearcherNit = [];
+  let newSearcherBusinessName = [];
   if (search || search2 || search3) {
-    resultss = users.filter((dato) =>
+    newSearcherName = users.filter((dato) =>
       dato.name.toLowerCase().includes(search.toLocaleLowerCase())
     );
-    resultss2 = users.filter((dato2) =>
-      dato2.nit.toLowerCase().includes(search2.toLocaleLowerCase())
+    newSearcherNit = users.filter((dato) =>
+      dato.nit.toLowerCase().includes(search2.toLocaleLowerCase())
     );
-    resultss3 = users.filter((dato3) =>
-      dato3.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
+    newSearcherBusinessName = users.filter((dato) =>
+      dato.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
     );
   }
   if (!search && !search2 && !search3 && !search4) {
@@ -74,15 +76,12 @@ const Home = ({
         </body>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usa el buscador por nombre************************* */
   } else if (search && !search2 && !search3 && !search4) {
     return (
       <div className="App">
         <div>
-          <ShowSearch
-            results={results}
+          <SearchName
+            searcherName={searcherName}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -92,15 +91,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usa el buscador por nit************************* */
   } else if (search2 && !search && !search3 && !search4) {
     return (
       <div className="App">
         <div>
           <SearchNit
-            results2={results2}
+            searcherNit={searcherNit}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -110,15 +106,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usa el buscador por Razon social************************* */
   } else if (!search2 && !search && search3 && !search4) {
     return (
       <div className="App">
         <div>
-          <SearchSr
-            results3={results3}
+          <SearchBusinessName
+            searcherBusinessName={searcherBusinessName}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -128,15 +121,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usa el buscador por telefono************************* */
   } else if (!search2 && !search && !search3 && search4) {
     return (
       <div className="App">
         <div>
           <SearchTelf
-            results4={results4}
+            searcherTelf={searcherTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -146,15 +136,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores: nombre y nit************************* */
   } else if (search && search2 && !search3 && !search4) {
     return (
       <div className="App">
         <div>
           <SearchNitName
-            resultss={resultss}
+            newSearcherName={newSearcherName}
             search2={search2}
             initialP={initialP}
             finalP={finalP}
@@ -165,15 +152,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores:razon y telefono*********************** */
   } else if (!search && !search2 && search3 && search4) {
     return (
       <div className="App">
         <div>
-          <SearchTelfSr
-            resultss3={resultss3}
+          <SearchTelfBusinessName
+            newSearcherBusinessName={newSearcherBusinessName}
             search4={search4}
             initialP={initialP}
             finalP={finalP}
@@ -184,15 +168,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores:nit y razon************************* */
   } else if (!search && search2 && search3 && !search4) {
     return (
       <div className="App">
         <div>
-          <SearchNitSr
-            resultss2={resultss2}
+          <SearchNitBusinessName
+            newSearcherNit={newSearcherNit}
             search3={search3}
             initialP={initialP}
             finalP={finalP}
@@ -203,15 +184,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores:nit y telf************************* */
   } else if (!search && search2 && !search3 && search4) {
     return (
       <div className="App">
         <div>
           <SearchTelfNit
-            resultss2={resultss2}
+            newSearcherNit={newSearcherNit}
             search4={search4}
             initialP={initialP}
             finalP={finalP}
@@ -222,15 +200,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores:nombre y telf************************* */
   } else if (search && !search2 && !search3 && search4) {
     return (
       <div className="App">
         <div>
           <SearchTelfName
-            resultss={resultss}
+            newSearcherName={newSearcherName}
             search4={search4}
             initialP={initialP}
             finalP={finalP}
@@ -241,15 +216,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*******************Si se usan ambos buscadores:nombre y razon************************* */
   } else if (search && !search2 && search3 && !search4) {
     return (
       <div className="App">
         <div>
-          <SearchNameSr
-            resultss={resultss}
+          <SearchNameBusinessName
+            newSearcherName={newSearcherName}
             search3={search3}
             initialP={initialP}
             finalP={finalP}
@@ -260,15 +232,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*************Si se usan 3 buscadores:nombre, nit y razon******************** */
   } else if (search && search2 && search3 && !search4) {
     return (
       <div className="App">
         <div>
-          <SearchNameNitSr
-            resultss={resultss}
+          <SearchNameNitBusinessName
+            newSearcherName={newSearcherName}
             search2={search2}
             search3={search3}
             initialP={initialP}
@@ -280,15 +249,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*************Si se usan 3 buscadores:nit, razon y telf******************** */
   } else if (!search && search2 && search3 && search4) {
     return (
       <div className="App">
         <div>
-          <SearchNitRsTelf
-            resultss2={resultss2}
+          <SearchNitBusinessNameTelf
+            newSearcherNit={newSearcherNit}
             search3={search3}
             search4={search4}
             initialP={initialP}
@@ -300,15 +266,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*************Si se usan 3 buscadores:nombre, nit y telf******************** */
   } else if (search && search2 && !search3 && search4) {
     return (
       <div className="App">
         <div>
           <SearchNameNitTelf
-            resultss={resultss}
+            newSearcherName={newSearcherName}
             search2={search2}
             search4={search4}
             initialP={initialP}
@@ -320,15 +283,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*************Si se usan 3 buscadores:nombre, razon y telf******************** */
   } else if (search && !search2 && search3 && search4) {
     return (
       <div className="App">
         <div>
-          <SearchNameSrTelf
-            resultss={resultss}
+          <SearchNameBusinessNameTelf
+            newSearcherName={newSearcherName}
             search3={search3}
             search4={search4}
             initialP={initialP}
@@ -340,15 +300,12 @@ const Home = ({
         </div>
       </div>
     );
-    /********************************************* */
-    /********************************************* */
-    /*************Si se usan los 4 buscadores******************** */
   } else if (search && search2 && search3 && search4) {
     return (
       <div className="App">
         <div>
           <SerchersAll
-            resultss={resultss}
+            newSearcherName={newSearcherName}
             search2={search2}
             search3={search3}
             search4={search4}

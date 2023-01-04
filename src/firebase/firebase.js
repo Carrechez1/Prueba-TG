@@ -1,4 +1,3 @@
-/***********************codigo base para usar firebase************************************ */
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 const firebaseConfig = {
@@ -11,7 +10,6 @@ const firebaseConfig = {
   measurementId: "G-3JK8WH33ZR",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);

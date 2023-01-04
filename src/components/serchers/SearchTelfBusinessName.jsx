@@ -1,19 +1,27 @@
 import React from "react";
 import Pagination from "../Pagination";
+const SearchTelfBusinessName = ({
+  initialP,
+  finalP,
+  newSearcherBusinessName,
+  search4,
+  page,
+  setPage,
+  perPage,
+}) => {
+  let searchTelfBusinessName = newSearcherBusinessName?.filter((dato) =>
+    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+  );
 
-const ShowSearch = ({ results, initialP, finalP, page, setPage, perPage }) => {
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results?.length == 0) {
-    results = false;
+  if (searchTelfBusinessName?.length == 0) {
+    searchTelfBusinessName = false;
   }
-  /*****Se muestran los elementos filtrados por nombre y se aplica logica de paginacion****/
-  console.log(results);
   return (
     <div>
-      {results ? (
+      {searchTelfBusinessName ? (
         <div>
           <article className="card__container2">
-            {results?.slice(initialP, finalP).map((user) => (
+            {searchTelfBusinessName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -43,7 +51,10 @@ const ShowSearch = ({ results, initialP, finalP, page, setPage, perPage }) => {
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results && Math.ceil(results.length / perPage)}
+              pagesLength={
+                searchTelfBusinessName &&
+                Math.ceil(searchTelfBusinessName.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
@@ -59,4 +70,4 @@ const ShowSearch = ({ results, initialP, finalP, page, setPage, perPage }) => {
   );
 };
 
-export default ShowSearch;
+export default SearchTelfBusinessName;

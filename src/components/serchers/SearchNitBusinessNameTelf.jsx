@@ -1,38 +1,37 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchNameNitSr = ({
+const SearchNitBusinessNameTelf = ({
   initialP,
   finalP,
-  resultss,
+  newSearcherNit,
   search3,
-  search2,
+  search4,
   page,
-  perPage,
   setPage,
+  perPage,
 }) => {
-  /******logica para buscar por 3 componentes***** */
-  let arr2 = [];
-  if (resultss) {
-    arr2 = resultss?.filter((dato6) =>
-      dato6.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+  let searchNitBusinessName = [];
+  if (newSearcherNit) {
+    searchNitBusinessName = newSearcherNit?.filter((dato) =>
+      dato.businessName
+        .toString()
+        .toLowerCase()
+        .includes(search3.toLocaleLowerCase())
     );
   }
-  let results6 = arr2?.filter((dato6) =>
-    dato6.businessName
-      .toString()
-      .toLowerCase()
-      .includes(search3.toLocaleLowerCase())
+  let searchNitBusinessNameTelf = searchNitBusinessName?.filter((dato) =>
+    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results6?.length == 0) {
-    results6 = false;
+
+  if (searchNitBusinessNameTelf?.length == 0) {
+    searchNitBusinessNameTelf = false;
   }
   return (
     <div>
-      {results6 ? (
+      {searchNitBusinessNameTelf ? (
         <div>
           <article className="card__container2">
-            {results6.slice(initialP, finalP).map((user) => (
+            {searchNitBusinessNameTelf.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -62,7 +61,10 @@ const SearchNameNitSr = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results6 && Math.ceil(results6.length / perPage)}
+              pagesLength={
+                searchNitBusinessNameTelf &&
+                Math.ceil(searchNitBusinessNameTelf.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
@@ -78,4 +80,4 @@ const SearchNameNitSr = ({
   );
 };
 
-export default SearchNameNitSr;
+export default SearchNitBusinessNameTelf;

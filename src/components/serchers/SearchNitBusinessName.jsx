@@ -1,28 +1,31 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchTelfSr = ({
+const SearchNitBusinessName = ({
   initialP,
   finalP,
-  resultss3,
-  search4,
+  newSearcherNit,
+  search3,
   page,
   setPage,
   perPage,
 }) => {
-  /**********nuevo arreglo para buscar 2 elementos*********** */
-  let results4 = resultss3?.filter((dato4) =>
-    dato4.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+  let searchNitBusinessName = newSearcherNit?.filter((dato) =>
+    dato.businessName
+      .toString()
+      .toLowerCase()
+      .includes(search3.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results4?.length == 0) {
-    results4 = false;
+
+  if (searchNitBusinessName?.length == 0) {
+    searchNitBusinessName = false;
   }
+
   return (
     <div>
-      {results4 ? (
+      {searchNitBusinessName ? (
         <div>
           <article className="card__container2">
-            {results4.slice(initialP, finalP).map((user) => (
+            {searchNitBusinessName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -52,7 +55,10 @@ const SearchTelfSr = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results4 && Math.ceil(results4.length / perPage)}
+              pagesLength={
+                searchNitBusinessName &&
+                Math.ceil(searchNitBusinessName.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
@@ -68,4 +74,4 @@ const SearchTelfSr = ({
   );
 };
 
-export default SearchTelfSr;
+export default SearchNitBusinessName;

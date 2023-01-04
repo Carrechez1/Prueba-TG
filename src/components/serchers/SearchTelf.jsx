@@ -1,17 +1,23 @@
 import React from "react";
 import Pagination from "../Pagination";
-const SearchTelf = ({ results4, initialP, finalP, page, setPage, perPage }) => {
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results4?.length == 0) {
-    results4 = false;
+const SearchTelf = ({
+  searcherTelf,
+  initialP,
+  finalP,
+  page,
+  setPage,
+  perPage,
+}) => {
+  if (searcherTelf?.length == 0) {
+    searcherTelf = false;
   }
-  /*****Se muestran los elementos filtrados por telefono y se aplica logica de paginacion****/
+
   return (
     <div>
-      {results4 ? (
+      {searcherTelf ? (
         <div>
           <article className="card__container2">
-            {results4.slice(initialP, finalP).map((user) => (
+            {searcherTelf.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -41,7 +47,9 @@ const SearchTelf = ({ results4, initialP, finalP, page, setPage, perPage }) => {
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results4 && Math.ceil(results4.length / perPage)}
+              pagesLength={
+                searcherTelf && Math.ceil(searcherTelf.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>

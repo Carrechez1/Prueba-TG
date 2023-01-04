@@ -3,26 +3,25 @@ import Pagination from "../Pagination";
 const SearchTelfNit = ({
   initialP,
   finalP,
-  resultss2,
+  newSearcherNit,
   search4,
   page,
   setPage,
   perPage,
 }) => {
-  /*********logica para buscar 2 elementos************ */
-  let results4 = resultss2?.filter((dato4) =>
-    dato4.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+  let searchTelfNit = newSearcherNit?.filter((dato) =>
+    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results4?.length == 0) {
-    results4 = false;
+
+  if (searchTelfNit?.length == 0) {
+    searchTelfNit = false;
   }
   return (
     <div>
-      {results4 ? (
+      {searchTelfNit ? (
         <div>
           <article className="card__container2">
-            {results4.slice(initialP, finalP).map((user) => (
+            {searchTelfNit.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -52,7 +51,9 @@ const SearchTelfNit = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results4 && Math.ceil(results4.length / perPage)}
+              pagesLength={
+                searchTelfNit && Math.ceil(searchTelfNit.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>

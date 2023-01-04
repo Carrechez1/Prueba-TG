@@ -3,26 +3,25 @@ import Pagination from "../Pagination";
 const SearchNitName = ({
   initialP,
   finalP,
-  resultss,
+  newSearcherName,
   search2,
   page,
   setPage,
   perPage,
 }) => {
-  /***********nuevo arreglo para filtrar por 2 elementos******** */
-  let results3 = resultss?.filter((dato3) =>
-    dato3.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+  let searchNitName = newSearcherName?.filter((dato) =>
+    dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
   );
-  /*****************cuando el arreglo este vacio sera falso******************** */
-  if (results3?.length == 0) {
-    results3 = false;
+
+  if (searchNitName?.length == 0) {
+    searchNitName = false;
   }
   return (
     <div>
-      {results3 ? (
+      {searchNitName ? (
         <div>
           <article className="card__container2">
-            {results3.slice(initialP, finalP).map((user) => (
+            {searchNitName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -52,7 +51,9 @@ const SearchNitName = ({
           <footer className="footer">
             <Pagination
               page={page}
-              pagesLength={results3 && Math.ceil(results3.length / perPage)}
+              pagesLength={
+                searchNitName && Math.ceil(searchNitName.length / perPage)
+              }
               setPage={setPage}
             />
           </footer>
