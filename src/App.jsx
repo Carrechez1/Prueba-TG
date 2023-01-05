@@ -8,10 +8,10 @@ import Home from "./components/Home";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
-  const [search2, setSearch2] = useState("");
-  const [search3, setSearch3] = useState("");
-  const [search4, setSearch4] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchNit, setSearchNit] = useState("");
+  const [searchBusinessName, setSearchBusinessName] = useState("");
+  const [searchTelf, setSearchTelf] = useState("");
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(20);
 
@@ -29,15 +29,15 @@ function App() {
     <div className="app">
       <header className="header">
         <DropDown
-          setSearch2={setSearch2}
-          search2={search2}
-          search={search}
-          setSearch={setSearch}
-          search3={search3}
-          setSearch3={setSearch3}
-          search4={search4}
+          setSearchNit={setSearchNit}
+          searchNit={searchNit}
+          searchName={searchName}
+          setSearchName={setSearchName}
+          searchBusinessName={searchBusinessName}
+          setSearchBusinessName={setSearchBusinessName}
+          searchTelf={searchTelf}
           setPage={setPage}
-          setSearch4={setSearch4}
+          setSearchTelf={setSearchTelf}
           getUsers={getUsers}
         />
       </header>
@@ -47,10 +47,10 @@ function App() {
           element={
             <Home
               users={users}
-              search={search}
-              search2={search2}
-              search3={search3}
-              search4={search4}
+              searchName={searchName}
+              searchNit={searchNit}
+              searchBusinessName={searchBusinessName}
+              searchTelf={searchTelf}
               getUsers={getUsers}
               page={page}
               setPage={setPage}

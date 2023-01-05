@@ -1,14 +1,11 @@
 import React from "react";
 import SearchNit from "./serchers/SearchNit";
 import SearchNitName from "./serchers/SearchNitName";
-import SearchNameNitSr from "./serchers/SearchNameNitBusinessName";
 import SearchBusinessName from "./serchers/SearchBusinessName";
 import SearchTelf from "./serchers/SearchTelf";
 import SearchTelfNit from "./serchers/SearchTelfNit";
 import SearchTelfName from "./serchers/SearchTelfName";
-import SearchNitRsTelf from "./serchers/SearchNameBusinessNameTelf";
 import SearchNameNitTelf from "./serchers/SearchNameNitTelf";
-import SearchNameSrTelf from "./serchers/SearchNitBusinessNameTelf";
 import SerchersAll from "./serchers/SerchersAll";
 import Show from "./CRUD/Show";
 import SearchName from "./serchers/SearchName";
@@ -21,10 +18,10 @@ import SearchNameBusinessNameTelf from "./serchers/SearchNameBusinessNameTelf";
 
 const Home = ({
   users,
-  search,
-  search2,
-  search3,
-  search4,
+  searchName,
+  searchNit,
+  searchBusinessName,
+  searchTelf,
   getUsers,
   page,
   setPage,
@@ -34,33 +31,37 @@ const Home = ({
   const finalP = page * perPage;
 
   let searcherName = users.filter((dato) =>
-    dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+    dato.name.toLowerCase().includes(searchName.toLocaleLowerCase())
   );
   let searcherNit = users.filter((dato) =>
-    dato.nit.toLowerCase().includes(search2.toLocaleLowerCase())
+    dato.nit.toLowerCase().includes(searchNit.toLocaleLowerCase())
   );
   let searcherBusinessName = users.filter((dato) =>
-    dato.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
+    dato.businessName
+      .toLowerCase()
+      .includes(searchBusinessName.toLocaleLowerCase())
   );
   let searcherTelf = users.filter((dato) =>
-    dato.telf.toLowerCase().includes(search4.toLocaleLowerCase())
+    dato.telf.toLowerCase().includes(searchTelf.toLocaleLowerCase())
   );
 
   let newSearcherName = [];
   let newSearcherNit = [];
   let newSearcherBusinessName = [];
-  if (search || search2 || search3) {
+  if (searchName || searchNit || searchBusinessName) {
     newSearcherName = users.filter((dato) =>
-      dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+      dato.name.toLowerCase().includes(searchName.toLocaleLowerCase())
     );
     newSearcherNit = users.filter((dato) =>
-      dato.nit.toLowerCase().includes(search2.toLocaleLowerCase())
+      dato.nit.toLowerCase().includes(searchNit.toLocaleLowerCase())
     );
     newSearcherBusinessName = users.filter((dato) =>
-      dato.businessName.toLowerCase().includes(search3.toLocaleLowerCase())
+      dato.businessName
+        .toLowerCase()
+        .includes(searchBusinessName.toLocaleLowerCase())
     );
   }
-  if (!search && !search2 && !search3 && !search4) {
+  if (!searchName && !searchNit && !searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <body>
@@ -76,7 +77,7 @@ const Home = ({
         </body>
       </div>
     );
-  } else if (search && !search2 && !search3 && !search4) {
+  } else if (searchName && !searchNit && !searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
@@ -91,7 +92,7 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search2 && !search && !search3 && !search4) {
+  } else if (searchNit && !searchName && !searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
@@ -106,7 +107,7 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search2 && !search && search3 && !search4) {
+  } else if (!searchNit && !searchName && searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
@@ -121,7 +122,7 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search2 && !search && !search3 && search4) {
+  } else if (!searchNit && !searchName && !searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
@@ -136,13 +137,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && search2 && !search3 && !search4) {
+  } else if (searchName && searchNit && !searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNitName
             newSearcherName={newSearcherName}
-            search2={search2}
+            searchNit={searchNit}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -152,13 +153,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search && !search2 && search3 && search4) {
+  } else if (!searchName && !searchNit && searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchTelfBusinessName
             newSearcherBusinessName={newSearcherBusinessName}
-            search4={search4}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -168,13 +169,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search && search2 && search3 && !search4) {
+  } else if (!searchName && searchNit && searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNitBusinessName
             newSearcherNit={newSearcherNit}
-            search3={search3}
+            searchBusinessName={searchBusinessName}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -184,13 +185,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search && search2 && !search3 && search4) {
+  } else if (!searchName && searchNit && !searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchTelfNit
             newSearcherNit={newSearcherNit}
-            search4={search4}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -200,13 +201,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && !search2 && !search3 && search4) {
+  } else if (searchName && !searchNit && !searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchTelfName
             newSearcherName={newSearcherName}
-            search4={search4}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -216,13 +217,13 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && !search2 && search3 && !search4) {
+  } else if (searchName && !searchNit && searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNameBusinessName
             newSearcherName={newSearcherName}
-            search3={search3}
+            searchBusinessName={searchBusinessName}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -232,14 +233,14 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && search2 && search3 && !search4) {
+  } else if (searchName && searchNit && searchBusinessName && !searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNameNitBusinessName
             newSearcherName={newSearcherName}
-            search2={search2}
-            search3={search3}
+            searchNit={searchNit}
+            searchBusinessName={searchBusinessName}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -249,14 +250,14 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (!search && search2 && search3 && search4) {
+  } else if (!searchName && searchNit && searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNitBusinessNameTelf
             newSearcherNit={newSearcherNit}
-            search3={search3}
-            search4={search4}
+            searchBusinessName={searchBusinessName}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -266,14 +267,14 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && search2 && !search3 && search4) {
+  } else if (searchName && searchNit && !searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNameNitTelf
             newSearcherName={newSearcherName}
-            search2={search2}
-            search4={search4}
+            searchNit={searchNit}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -283,14 +284,14 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && !search2 && search3 && search4) {
+  } else if (searchName && !searchNit && searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SearchNameBusinessNameTelf
             newSearcherName={newSearcherName}
-            search3={search3}
-            search4={search4}
+            searchBusinessName={searchBusinessName}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}
@@ -300,15 +301,15 @@ const Home = ({
         </div>
       </div>
     );
-  } else if (search && search2 && search3 && search4) {
+  } else if (searchName && searchNit && searchBusinessName && searchTelf) {
     return (
       <div className="App">
         <div>
           <SerchersAll
             newSearcherName={newSearcherName}
-            search2={search2}
-            search3={search3}
-            search4={search4}
+            searchNit={searchNit}
+            searchBusinessName={searchBusinessName}
+            searchTelf={searchTelf}
             initialP={initialP}
             finalP={finalP}
             page={page}

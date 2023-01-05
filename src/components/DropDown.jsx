@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 import Create from "./CRUD/Create";
-import SearchComponent from "./search/SearchComponent";
 import SearchComponentNit from "./search/SearchComponentNit";
 import "../css/dropDown.css";
-import SearchComponentNitSr from "./search/SearchComponentNitSr";
 import SearchComponentTelf from "./search/SearchComponentTelf";
+import SearchComponentName from "./search/SearchComponentName";
+import SearchComponentBusinessName from "./search/SearchComponentBusinessName";
 
 const DropDown = ({
-  search,
-  setSearch,
-  search2,
-  setSearch2,
-  search3,
-  setSearch3,
-  search4,
-  setSearch4,
+  searchName,
+  setSearchName,
+  searchNit,
+  setSearchNit,
+  searchBusinessName,
+  setSearchBusinessName,
+  searchTelf,
+  setSearchTelf,
   setPage,
   getUsers,
 }) => {
-  /***********************declaramos estados******************************* */
   const [dropdown, setDropdown] = useState(false);
   const [openForm, setOpenForm] = useState(false);
-  /****************logica para abrir/cerrar el dropdown***************** */
+
   const openCloseDropdown = () => {
     setDropdown(!dropdown);
   };
-  /*********************logica para cerrar el formulario*************************** */
+
   const handleOpenForm = () => {
     setOpenForm(true);
   };
-  /*********************se muestra el drop down********************** */
+
   return (
     <div className="dropDown__container">
       <button className="dropDown__open-close" onClick={openCloseDropdown}>
@@ -51,30 +50,30 @@ const DropDown = ({
           </div>
           <div className="searchs">
             <div>
-              <SearchComponent
-                search={search}
-                setSearch={setSearch}
+              <SearchComponentName
+                searchName={searchName}
+                setSearchName={setSearchName}
                 setPage={setPage}
               />
             </div>
             <div>
               <SearchComponentNit
-                search2={search2}
-                setSearch2={setSearch2}
+                searchNit={searchNit}
+                setSearchNit={setSearchNit}
                 setPage={setPage}
               />
             </div>
             <div>
-              <SearchComponentNitSr
-                search3={search3}
-                setSearch3={setSearch3}
+              <SearchComponentBusinessName
+                searchBusinessName={searchBusinessName}
+                setSearchBusinessName={setSearchBusinessName}
                 setPage={setPage}
               />
             </div>
             <div>
               <SearchComponentTelf
-                search4={search4}
-                setSearch4={setSearch4}
+                searchTelf={searchTelf}
+                setSearchTelf={setSearchTelf}
                 setPage={setPage}
               />
             </div>

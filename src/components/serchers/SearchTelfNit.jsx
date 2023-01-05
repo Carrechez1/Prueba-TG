@@ -4,13 +4,13 @@ const SearchTelfNit = ({
   initialP,
   finalP,
   newSearcherNit,
-  search4,
+  searchTelf,
   page,
   setPage,
   perPage,
 }) => {
   let searchTelfNit = newSearcherNit?.filter((dato) =>
-    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+    dato.telf.toString().toLowerCase().includes(searchTelf.toLocaleLowerCase())
   );
 
   if (searchTelfNit?.length == 0) {

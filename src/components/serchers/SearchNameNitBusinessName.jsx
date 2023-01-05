@@ -4,8 +4,8 @@ const SearchNameNitBusinessName = ({
   initialP,
   finalP,
   newSearcherName,
-  search3,
-  search2,
+  searchBusinessName,
+  searchNit,
   page,
   perPage,
   setPage,
@@ -13,14 +13,14 @@ const SearchNameNitBusinessName = ({
   let searchNitName = [];
   if (newSearcherName) {
     searchNitName = newSearcherName?.filter((dato) =>
-      dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+      dato.nit.toString().toLowerCase().includes(searchNit.toLocaleLowerCase())
     );
   }
   let searchNitNameBusinessName = searchNitName?.filter((dato) =>
     dato.businessName
       .toString()
       .toLowerCase()
-      .includes(search3.toLocaleLowerCase())
+      .includes(searchBusinessName.toLocaleLowerCase())
   );
 
   if (searchNitNameBusinessName?.length == 0) {

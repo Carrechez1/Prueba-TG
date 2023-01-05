@@ -1,17 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const SearchComponentTelf = ({ search4, setSearch4, setPage }) => {
-  /***********logica del buscador y reseteo de pagina al usar el buscador*************** */
-  const searcher4 = (e) => {
-    setSearch4(e.target.value);
+const SearchComponentTelf = ({ searchTelf, setSearchTelf, setPage }) => {
+  const searcherTelf = (e) => {
+    setSearchTelf(e.target.value);
     setPage(1);
   };
-  /*************************************************** */
+
   return (
     <div>
       <input
-        value={search4}
-        onChange={searcher4}
+        value={searchTelf}
+        onChange={searcherTelf}
         type="text"
         placeholder="Telefono"
       />
@@ -19,4 +18,4 @@ const SearchComponentTelf = ({ search4, setSearch4, setPage }) => {
   );
 };
 
-export default SearchComponentTelf
+export default SearchComponentTelf;

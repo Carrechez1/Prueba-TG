@@ -4,9 +4,9 @@ const SerchersAll = ({
   initialP,
   finalP,
   newSearcherName,
-  search3,
-  search2,
-  search4,
+  searchBusinessName,
+  searchNit,
+  searchTelf,
   page,
   setPage,
   perPage,
@@ -14,7 +14,7 @@ const SerchersAll = ({
   let searchNameNit = [];
   if (newSearcherName) {
     searchNameNit = newSearcherName?.filter((dato) =>
-      dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+      dato.nit.toString().toLowerCase().includes(searchNit.toLocaleLowerCase())
     );
   }
   let searchNameNitBusinessName = [];
@@ -23,12 +23,15 @@ const SerchersAll = ({
       dato.businessName
         .toString()
         .toLowerCase()
-        .includes(search3.toLocaleLowerCase())
+        .includes(searchBusinessName.toLocaleLowerCase())
     );
   }
   let searchNameNitBusinessNameTelf = searchNameNitBusinessName?.filter(
     (dato) =>
-      dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+      dato.telf
+        .toString()
+        .toLowerCase()
+        .includes(searchTelf.toLocaleLowerCase())
   );
 
   if (searchNameNitBusinessNameTelf?.length == 0) {

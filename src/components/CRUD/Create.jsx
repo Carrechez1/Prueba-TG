@@ -3,20 +3,18 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
 const Create = ({ setOpenForm, getUsers }) => {
-  /***************Declaramos estados********************* */
   const [name, setName] = useState("Nombre");
   const [businessName, setBusinessName] = useState("Razon Social");
   const [nit, setNit] = useState("123456");
   const [telf, setTelf] = useState("+58-416-1234567");
   const [code, setCode] = useState("Codigo");
-  /**************accedemos a la coleccion de datos************* */
+
   const usersCollection = collection(db, "users");
-  /**************componente para cerrar el pop-up*************** */
+
   const handleCloseForm = () => {
     setOpenForm(false);
   };
 
-  /******************enviar datos de registro******************** */
   const store = async (e) => {
     e.preventDefault();
     await addDoc(usersCollection, {
@@ -29,7 +27,7 @@ const Create = ({ setOpenForm, getUsers }) => {
     handleCloseForm();
     getUsers();
   };
-  /************************************* */
+
   return (
     <form onSubmit={store} className="form">
       <div onClick={handleCloseForm} className="form__x">

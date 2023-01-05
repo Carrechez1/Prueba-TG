@@ -4,7 +4,7 @@ const SearchNitBusinessName = ({
   initialP,
   finalP,
   newSearcherNit,
-  search3,
+  searchBusinessName,
   page,
   setPage,
   perPage,
@@ -13,7 +13,7 @@ const SearchNitBusinessName = ({
     dato.businessName
       .toString()
       .toLowerCase()
-      .includes(search3.toLocaleLowerCase())
+      .includes(searchBusinessName.toLocaleLowerCase())
   );
 
   if (searchNitBusinessName?.length == 0) {

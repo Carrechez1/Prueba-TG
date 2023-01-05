@@ -4,13 +4,13 @@ const SearchTelfBusinessName = ({
   initialP,
   finalP,
   newSearcherBusinessName,
-  search4,
+  searchTelf,
   page,
   setPage,
   perPage,
 }) => {
   let searchTelfBusinessName = newSearcherBusinessName?.filter((dato) =>
-    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+    dato.telf.toString().toLowerCase().includes(searchTelf.toLocaleLowerCase())
   );
 
   if (searchTelfBusinessName?.length == 0) {

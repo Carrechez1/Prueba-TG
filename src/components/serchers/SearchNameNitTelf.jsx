@@ -4,8 +4,8 @@ const SearchNameNitTelf = ({
   initialP,
   finalP,
   newSearcherName,
-  search2,
-  search4,
+  searchNit,
+  searchTelf,
   page,
   setPage,
   perPage,
@@ -13,11 +13,11 @@ const SearchNameNitTelf = ({
   let searchNameNit = [];
   if (newSearcherName) {
     searchNameNit = newSearcherName?.filter((dato) =>
-      dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+      dato.nit.toString().toLowerCase().includes(searchNit.toLocaleLowerCase())
     );
   }
   let searchNameNitTelf = searchNameNit?.filter((dato) =>
-    dato.telf.toString().toLowerCase().includes(search4.toLocaleLowerCase())
+    dato.telf.toString().toLowerCase().includes(searchTelf.toLocaleLowerCase())
   );
 
   if (searchNameNitTelf?.length == 0) {

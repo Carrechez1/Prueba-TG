@@ -4,13 +4,13 @@ const SearchNitName = ({
   initialP,
   finalP,
   newSearcherName,
-  search2,
+  searchNit,
   page,
   setPage,
   perPage,
 }) => {
   let searchNitName = newSearcherName?.filter((dato) =>
-    dato.nit.toString().toLowerCase().includes(search2.toLocaleLowerCase())
+    dato.nit.toString().toLowerCase().includes(searchNit.toLocaleLowerCase())
   );
 
   if (searchNitName?.length == 0) {
