@@ -1,5 +1,5 @@
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
+import { PropsSerchers } from "../../../types/PropSerchers";
+import Pagination from "../../body/Pagination";
 
 const Show = ({
   users,

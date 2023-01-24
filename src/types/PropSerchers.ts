@@ -11,6 +11,7 @@ export interface PropsSerchers {
   searcherBusinessName?: User[];
   newSearcherName?: User[];
   searchBusinessName?: string;
+  searchName?: string;
   searchTelf?: string;
   searchNit?: string;
   searcherNit?: User[];

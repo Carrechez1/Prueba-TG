@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
-import { Create_ } from "../../types/create";
+import { db } from "../../../firebase/firebase";
+import { Create_ } from "../../../types/create";
 
 const Create = ({ setOpenForm, getUsers }: Create_) => {
   const [name, setName] = useState("Nombre");
@@ -16,7 +16,7 @@ const Create = ({ setOpenForm, getUsers }: Create_) => {
     setOpenForm(false);
   };
 
-  const store = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const store = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addDoc(usersCollection, {
       name: name,
@@ -28,10 +28,9 @@ const Create = ({ setOpenForm, getUsers }: Create_) => {
     handleCloseForm();
     getUsers();
   };
-  let handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
 
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form onSubmit={store} className="form">
       <div onClick={handleCloseForm} className="form__x">
         X
       </div>

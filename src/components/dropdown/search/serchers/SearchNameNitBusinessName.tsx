@@ -1,16 +1,30 @@
 import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchNitBusinessName = ({
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchNameNitBusinessName = ({
   initialP,
   finalP,
-  newSearcherNit,
+  newSearcherName,
   searchBusinessName,
+  searchNit,
   page,
-  setPage,
   perPage,
+  setPage,
 }: PropsSerchers) => {
-  let searchNitBusinessName = newSearcherNit?.filter((dato) => {
+  let searchNitName: typeof newSearcherName = [];
+  if (newSearcherName !== undefined) {
+    searchNitName = newSearcherName?.filter((dato) => {
+      if (searchNit !== undefined) {
+        if (dato.nit !== undefined) {
+          return dato.nit
+            .toString()
+            .toLowerCase()
+            .includes(searchNit.toLocaleLowerCase());
+        }
+      }
+    });
+  }
+  let searchNitNameBusinessName = searchNitName?.filter((dato) => {
     if (searchBusinessName !== undefined) {
       if (dato.businessName !== undefined) {
         return dato.businessName
@@ -20,17 +34,16 @@ const SearchNitBusinessName = ({
       }
     }
   });
-  let searcherNitBusinessName = false;
-  if (searchNitBusinessName?.length !== 0) {
-    searcherNitBusinessName = true;
+  let searcherNitNameBusinessName = false;
+  if (searchNitNameBusinessName?.length !== 0) {
+    searcherNitNameBusinessName = true;
   }
-
   return (
     <div>
-      {searcherNitBusinessName ? (
+      {searcherNitNameBusinessName ? (
         <div>
           <article className="card__container2">
-            {searchNitBusinessName?.slice(initialP, finalP).map((user) => (
+            {searchNitNameBusinessName.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -61,9 +74,8 @@ const SearchNitBusinessName = ({
             <Pagination
               page={page}
               pagesLength={
-                (searchNitBusinessName &&
-                  Math.ceil(searchNitBusinessName.length / perPage)) ||
-                0
+                searchNitNameBusinessName &&
+                Math.ceil(searchNitNameBusinessName.length / perPage)
               }
               setPage={setPage}
             />
@@ -80,4 +92,4 @@ const SearchNitBusinessName = ({
   );
 };
 
-export default SearchNitBusinessName;
+export default SearchNameNitBusinessName;

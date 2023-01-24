@@ -1,5 +1,4 @@
-import React from "react";
-import { searchNameNitTelfBusinessName } from "../../types/searchNameNitTelfBusinessName";
+import { searchNameNitTelfBusinessName } from "../../../types/searchNameNitTelfBusinessName";
 
 const SearchComponentName = ({
   searchName,

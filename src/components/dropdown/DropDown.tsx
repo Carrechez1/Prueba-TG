@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Create from "./CRUD/Create";
 import SearchComponentNit from "./search/SearchComponentNit";
-import "../css/dropDown.css";
+import "../../css/dropDown.css";
 import SearchComponentTelf from "./search/SearchComponentTelf";
 import SearchComponentName from "./search/SearchComponentName";
 import SearchComponentBusinessName from "./search/SearchComponentBusinessName";
 
-import { PropsDropDown } from "../types/PropsDropDown";
+import { PropsDropDown } from "../../types/PropsDropDown";
 
 const DropDown = ({
   searchName,

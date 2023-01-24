@@ -1,49 +1,26 @@
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchNameNitTelf = ({
+import React from "react";
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchNit = ({
+  searcherNit,
   initialP,
   finalP,
-  newSearcherName,
-  searchNit,
-  searchTelf,
   page,
   setPage,
   perPage,
 }: PropsSerchers) => {
-  let searchNameNit: typeof newSearcherName = [];
+  let searcherNit_ = false;
 
-  if (newSearcherName) {
-    searchNameNit = newSearcherName?.filter((dato) => {
-      if (searchNit !== undefined) {
-        if (dato.nit !== undefined) {
-          return dato.nit
-            .toString()
-            .toLowerCase()
-            .includes(searchNit.toLocaleLowerCase());
-        }
-      }
-    });
+  if (searcherNit?.length !== 0) {
+    searcherNit_ = true;
   }
-  let searchNameNitTelf = searchNameNit?.filter((dato) => {
-    if (searchTelf !== undefined) {
-      if (dato.telf !== undefined) {
-        return dato.telf
-          .toString()
-          .toLowerCase()
-          .includes(searchTelf.toLocaleLowerCase());
-      }
-    }
-  });
-  let searcherNameNitTelf = false;
-  if (searchNameNitTelf?.length !== 0) {
-    searcherNameNitTelf = true;
-  }
+  console.log(searcherNit);
   return (
     <div>
-      {searcherNameNitTelf ? (
+      {searcherNit_ ? (
         <div>
           <article className="card__container2">
-            {searchNameNitTelf.slice(initialP, finalP).map((user) => (
+            {searcherNit?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -74,8 +51,7 @@ const SearchNameNitTelf = ({
             <Pagination
               page={page}
               pagesLength={
-                searchNameNitTelf &&
-                Math.ceil(searchNameNitTelf.length / perPage)
+                (searcherNit && Math.ceil(searcherNit.length / perPage)) || 0
               }
               setPage={setPage}
             />
@@ -92,4 +68,4 @@ const SearchNameNitTelf = ({
   );
 };
 
-export default SearchNameNitTelf;
+export default SearchNit;

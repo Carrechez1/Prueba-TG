@@ -1,26 +1,35 @@
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-
-const SearchName = ({
-  searcherName,
+import React from "react";
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchTelfName = ({
+  initialP,
+  finalP,
+  newSearcherName,
+  searchTelf,
   page,
   setPage,
   perPage,
-  initialP,
-  finalP,
 }: PropsSerchers) => {
-  let sercherName = false;
-
-  if (searcherName?.length !== 0) {
-    sercherName = true;
+  let searchTelfName = newSearcherName?.filter((dato) => {
+    if (searchTelf !== undefined) {
+      if (dato.telf !== undefined) {
+        return dato.telf
+          .toString()
+          .toLowerCase()
+          .includes(searchTelf.toLocaleLowerCase());
+      }
+    }
+  });
+  let searcherTelfName = false;
+  if (searchTelfName?.length !== 0) {
+    searcherTelfName = true;
   }
-
   return (
     <div>
-      {sercherName ? (
+      {searcherTelfName ? (
         <div>
           <article className="card__container2">
-            {searcherName?.slice(initialP, finalP).map((user) => (
+            {searchTelfName?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -51,7 +60,9 @@ const SearchName = ({
             <Pagination
               page={page}
               pagesLength={
-                (searcherName && Math.ceil(searcherName.length / perPage)) || 0
+                (searchTelfName &&
+                  Math.ceil(searchTelfName.length / perPage)) ||
+                0
               }
               setPage={setPage}
             />
@@ -68,4 +79,4 @@ const SearchName = ({
   );
 };
 
-export default SearchName;
+export default SearchTelfName;

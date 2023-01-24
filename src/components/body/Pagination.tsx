@@ -1,6 +1,5 @@
-import React from "react";
-import "../css/pagination.css";
-import { Footer } from "../types/footer";
+import "../../css/pagination.css";
+import { Footer } from "../../types/footer";
 const Pagination = ({ page, pagesLength, setPage }: Footer) => {
   const pagesPerBlock = 5;
   let currentBlock;

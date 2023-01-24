@@ -1,35 +1,35 @@
 import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchTelfName = ({
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchNameBusinessName = ({
   initialP,
   finalP,
   newSearcherName,
-  searchTelf,
+  searchBusinessName,
   page,
   setPage,
   perPage,
 }: PropsSerchers) => {
-  let searchTelfName = newSearcherName?.filter((dato) => {
-    if (searchTelf !== undefined) {
-      if (dato.telf !== undefined) {
-        return dato.telf
+  let searchNameBusinessName = newSearcherName?.filter((dato) => {
+    if (searchBusinessName !== undefined) {
+      if (dato.businessName !== undefined) {
+        return dato.businessName
           .toString()
           .toLowerCase()
-          .includes(searchTelf.toLocaleLowerCase());
+          .includes(searchBusinessName.toLocaleLowerCase());
       }
     }
   });
-  let searcherTelfName = false;
-  if (searchTelfName?.length !== 0) {
-    searcherTelfName = true;
+  let searcherBusinessName = false;
+  if (searchNameBusinessName?.length !== 0) {
+    searcherBusinessName = true;
   }
   return (
     <div>
-      {searcherTelfName ? (
+      {searcherBusinessName ? (
         <div>
           <article className="card__container2">
-            {searchTelfName?.slice(initialP, finalP).map((user) => (
+            {searchNameBusinessName?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -60,8 +60,8 @@ const SearchTelfName = ({
             <Pagination
               page={page}
               pagesLength={
-                (searchTelfName &&
-                  Math.ceil(searchTelfName.length / perPage)) ||
+                (searchNameBusinessName &&
+                  Math.ceil(searchNameBusinessName.length / perPage)) ||
                 0
               }
               setPage={setPage}
@@ -79,4 +79,4 @@ const SearchTelfName = ({
   );
 };
 
-export default SearchTelfName;
+export default SearchNameBusinessName;

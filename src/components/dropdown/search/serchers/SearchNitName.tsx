@@ -1,6 +1,6 @@
 import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
 const SearchNitName = ({
   initialP,
   finalP,

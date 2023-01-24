@@ -1,35 +1,26 @@
-import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchNameBusinessName = ({
-  initialP,
-  finalP,
-  newSearcherName,
-  searchBusinessName,
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+
+const SearchName = ({
+  searcherName,
   page,
   setPage,
   perPage,
+  initialP,
+  finalP,
 }: PropsSerchers) => {
-  let searchNameBusinessName = newSearcherName?.filter((dato) => {
-    if (searchBusinessName !== undefined) {
-      if (dato.businessName !== undefined) {
-        return dato.businessName
-          .toString()
-          .toLowerCase()
-          .includes(searchBusinessName.toLocaleLowerCase());
-      }
-    }
-  });
-  let searcherBusinessName = false;
-  if (searchNameBusinessName?.length !== 0) {
-    searcherBusinessName = true;
+  let sercherName = false;
+
+  if (searcherName?.length !== 0) {
+    sercherName = true;
   }
+
   return (
     <div>
-      {searcherBusinessName ? (
+      {sercherName ? (
         <div>
           <article className="card__container2">
-            {searchNameBusinessName?.slice(initialP, finalP).map((user) => (
+            {searcherName?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -60,9 +51,7 @@ const SearchNameBusinessName = ({
             <Pagination
               page={page}
               pagesLength={
-                (searchNameBusinessName &&
-                  Math.ceil(searchNameBusinessName.length / perPage)) ||
-                0
+                (searcherName && Math.ceil(searcherName.length / perPage)) || 0
               }
               setPage={setPage}
             />
@@ -79,4 +68,4 @@ const SearchNameBusinessName = ({
   );
 };
 
-export default SearchNameBusinessName;
+export default SearchName;

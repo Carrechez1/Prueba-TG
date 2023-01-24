@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./css/App.css";
-import DropDown from "./components/DropDown";
+import DropDown from "./components/dropdown/DropDown";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase/firebase";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/body/Home";
 import { User } from "./types/user";
 
 function App() {

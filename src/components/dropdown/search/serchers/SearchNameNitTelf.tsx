@@ -1,30 +1,30 @@
-import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchNameBusinessNameTelf = ({
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchNameNitTelf = ({
   initialP,
   finalP,
   newSearcherName,
+  searchNit,
   searchTelf,
-  searchBusinessName,
   page,
   setPage,
   perPage,
 }: PropsSerchers) => {
-  let searchNameBusinessName: typeof newSearcherName = [];
-  if (newSearcherName !== undefined) {
-    searchNameBusinessName = newSearcherName?.filter((dato) => {
-      if (searchBusinessName !== undefined) {
-        if (dato.businessName !== undefined) {
-          return dato.businessName
+  let searchNameNit: typeof newSearcherName = [];
+
+  if (newSearcherName) {
+    searchNameNit = newSearcherName?.filter((dato) => {
+      if (searchNit !== undefined) {
+        if (dato.nit !== undefined) {
+          return dato.nit
             .toString()
             .toLowerCase()
-            .includes(searchBusinessName.toLocaleLowerCase());
+            .includes(searchNit.toLocaleLowerCase());
         }
       }
     });
   }
-  let searchNameBusinessNameTelf = searchNameBusinessName?.filter((dato) => {
+  let searchNameNitTelf = searchNameNit?.filter((dato) => {
     if (searchTelf !== undefined) {
       if (dato.telf !== undefined) {
         return dato.telf
@@ -34,16 +34,16 @@ const SearchNameBusinessNameTelf = ({
       }
     }
   });
-  let searcherNameBusinessNameTelf = false;
-  if (searchNameBusinessNameTelf?.length !== 0) {
-    searcherNameBusinessNameTelf = true;
+  let searcherNameNitTelf = false;
+  if (searchNameNitTelf?.length !== 0) {
+    searcherNameNitTelf = true;
   }
   return (
     <div>
-      {searcherNameBusinessNameTelf ? (
+      {searcherNameNitTelf ? (
         <div>
           <article className="card__container2">
-            {searchNameBusinessNameTelf.slice(initialP, finalP).map((user) => (
+            {searchNameNitTelf.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -74,8 +74,8 @@ const SearchNameBusinessNameTelf = ({
             <Pagination
               page={page}
               pagesLength={
-                searchNameBusinessNameTelf &&
-                Math.ceil(searchNameBusinessNameTelf.length / perPage)
+                searchNameNitTelf &&
+                Math.ceil(searchNameNitTelf.length / perPage)
               }
               setPage={setPage}
             />
@@ -92,4 +92,4 @@ const SearchNameBusinessNameTelf = ({
   );
 };
 
-export default SearchNameBusinessNameTelf;
+export default SearchNameNitTelf;

@@ -1,26 +1,35 @@
 import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchNit = ({
-  searcherNit,
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchTelfNit = ({
   initialP,
   finalP,
+  newSearcherNit,
+  searchTelf,
   page,
   setPage,
   perPage,
 }: PropsSerchers) => {
-  let searcherNit_ = false;
-
-  if (searcherNit?.length !== 0) {
-    searcherNit_ = true;
+  let searchTelfNit = newSearcherNit?.filter((dato) => {
+    if (searchTelf !== undefined) {
+      if (dato.telf !== undefined) {
+        return dato.telf
+          .toString()
+          .toLowerCase()
+          .includes(searchTelf.toLocaleLowerCase());
+      }
+    }
+  });
+  let searcherTelfNit = false;
+  if (searchTelfNit?.length !== 0) {
+    searcherTelfNit = true;
   }
-  console.log(searcherNit);
   return (
     <div>
-      {searcherNit_ ? (
+      {searcherTelfNit ? (
         <div>
           <article className="card__container2">
-            {searcherNit?.slice(initialP, finalP).map((user) => (
+            {searchTelfNit?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -51,7 +60,8 @@ const SearchNit = ({
             <Pagination
               page={page}
               pagesLength={
-                (searcherNit && Math.ceil(searcherNit.length / perPage)) || 0
+                (searchTelfNit && Math.ceil(searchTelfNit.length / perPage)) ||
+                0
               }
               setPage={setPage}
             />
@@ -68,4 +78,4 @@ const SearchNit = ({
   );
 };
 
-export default SearchNit;
+export default SearchTelfNit;

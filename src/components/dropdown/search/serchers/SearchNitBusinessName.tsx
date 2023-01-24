@@ -1,35 +1,36 @@
 import React from "react";
-import { PropsSerchers } from "../../types/PropSerchers";
-import Pagination from "../Pagination";
-const SearchTelfNit = ({
+import { PropsSerchers } from "../../../../types/PropSerchers";
+import Pagination from "../../../body/Pagination";
+const SearchNitBusinessName = ({
   initialP,
   finalP,
   newSearcherNit,
-  searchTelf,
+  searchBusinessName,
   page,
   setPage,
   perPage,
 }: PropsSerchers) => {
-  let searchTelfNit = newSearcherNit?.filter((dato) => {
-    if (searchTelf !== undefined) {
-      if (dato.telf !== undefined) {
-        return dato.telf
+  let searchNitBusinessName = newSearcherNit?.filter((dato) => {
+    if (searchBusinessName !== undefined) {
+      if (dato.businessName !== undefined) {
+        return dato.businessName
           .toString()
           .toLowerCase()
-          .includes(searchTelf.toLocaleLowerCase());
+          .includes(searchBusinessName.toLocaleLowerCase());
       }
     }
   });
-  let searcherTelfNit = false;
-  if (searchTelfNit?.length !== 0) {
-    searcherTelfNit = true;
+  let searcherNitBusinessName = false;
+  if (searchNitBusinessName?.length !== 0) {
+    searcherNitBusinessName = true;
   }
+
   return (
     <div>
-      {searcherTelfNit ? (
+      {searcherNitBusinessName ? (
         <div>
           <article className="card__container2">
-            {searchTelfNit?.slice(initialP, finalP).map((user) => (
+            {searchNitBusinessName?.slice(initialP, finalP).map((user) => (
               <div className="card" key={user.id}>
                 <header className="card__header">
                   <h2 className="card__title">{user.name}</h2>
@@ -60,7 +61,8 @@ const SearchTelfNit = ({
             <Pagination
               page={page}
               pagesLength={
-                (searchTelfNit && Math.ceil(searchTelfNit.length / perPage)) ||
+                (searchNitBusinessName &&
+                  Math.ceil(searchNitBusinessName.length / perPage)) ||
                 0
               }
               setPage={setPage}
@@ -78,4 +80,4 @@ const SearchTelfNit = ({
   );
 };
 
-export default SearchTelfNit;
+export default SearchNitBusinessName;
